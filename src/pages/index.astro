@@ -1,0 +1,52 @@
+---
+	import Layout from '../layouts/Layout.astro';
+---
+
+
+
+<Layout title="Portfolio de Anner">
+
+	<div class="hero full-width content-grid">
+	<h1>
+		Todo el mundo sabe lo que es una pala.<br>
+		Algunos sólo hacen pozos,<br>
+		otros hacemos <span class="highlight">bellos jardines</span>.
+	</h1>
+</div>
+
+
+</Layout>
+
+<style>
+
+	.hero{
+
+		--_height: 90vh;
+
+		height: var(--_height);
+
+		background: rgb(5,5,11);
+		background: 
+		radial-gradient(ellipse at top, transparent 30%, var(--clr-primary) 52%, var(--clr-primary-light) 62%, var(--clr-text) 80%);
+		background-size: 225vw var(--_height);
+		background-position: center top;
+		background-repeat: no-repeat;
+
+		border-radius: 20px;
+
+		display: grid;
+		place-items: center;
+		/* padding: 8rem 0; */
+
+	}
+
+	h1{
+		margin-bottom: 3em;
+
+		& span.highlight{
+			color: var(--clr-accent);
+			-webkit-text-fill-color: var(--clr-accent);
+		}
+	}
+
+</style>

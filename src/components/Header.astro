@@ -1,0 +1,132 @@
+---
+
+---
+
+<header class="content-grid" transition:persist>
+  <div class="wrapper">
+  
+  <a href="/" class="logo">
+    <div class="sqr"></div>
+    <div class="sqr"></div>
+    <div class="sqr"></div>
+  </a>
+
+
+    
+    
+
+    <nav>
+      <a href="experience" data-text="Experiencia">Experiencia</a>
+      <a href="about" data-text="Acerca de mí">Acerca de mí</a>
+
+    </nav>
+</header>
+
+<script>
+
+const header = document.querySelector('header');
+
+let actualScroll = 0
+let top = 0
+header.setAttribute("style", `--_top:${top}px`);
+
+window.addEventListener('scroll',()=>{
+  top = Math.min(-(window.scrollY - actualScroll + header.clientHeight), 0)
+
+  if (window.scrollY  > actualScroll) {
+    actualScroll = window.scrollY
+  }
+
+  if (top === 0) {
+    actualScroll = window.scrollY + header.clientHeight
+  }
+  
+  header.setAttribute("style", `--_top:${top}px`);
+  header.classList.toggle('active',window.scrollY < actualScroll)
+  header.classList.toggle('clr',window.scrollY > header.clientHeight * 1.5)
+
+
+})
+
+</script>
+
+<style>
+
+  header{
+    position: sticky;
+    z-index: 99;
+    transition: background-color .3s ease-in-out;
+
+
+  }
+
+  header.active{
+    top: var(--_top);
+  }
+
+  header.clr{
+    background-color: var(--clr-background);
+    box-shadow: -10px 0 1rem 1rem #0008;
+  }
+  .wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+
+  .logo{
+    --_size:var(--fs-200);
+  }
+
+  .logo:hover .sqr{
+  background-position: top right;
+  box-shadow: 0 0 var(--_size) 0 var(--clr-primary);
+}
+
+  nav{
+    display: flex;
+    gap: 1em;
+  }
+  
+  nav a:not(.logo){
+    color: var(--clr-text);
+    color: transparent;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+
+    --_top-text : 1.2em;
+  }
+
+  nav a::before, nav a::after{
+    content: attr(data-text);
+    position: absolute;
+    color: var(--clr-text);
+    opacity: .6;
+    transition: top .4s;
+    left: 0;
+  }
+
+
+  
+
+  nav a::after, nav a:is(:hover,:focus)::before{
+    top: 0;
+  }
+
+  nav a::before{
+    top: var(--_top-text);
+    opacity: 1;
+  }
+  nav a:is(:hover,:focus)::after{
+    top: calc( var(--_top-text) * -1);
+  }
+
+
+
+
+
+
+
+</style>

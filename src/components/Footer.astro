@@ -1,0 +1,134 @@
+---
+
+---
+
+<footer class="content-grid">
+  <div class="wrapper">
+
+  <div class="logo">
+    <div class="sqr"></div>
+    <div class="sqr"></div>
+    <div class="sqr"></div>
+  </div>
+<section>
+  <menu>
+  <h4>Navegación</h4>
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/experience">Experiencia</a>
+    <a href="/about">Acerca de mí</a>
+  </nav>
+</menu>
+
+<menu>
+  <h4>Recursos externos</h4>
+  <nav>
+    <a href="https://github.com/LukaSaldivia" target="_blank">GitHub</a>
+    <a href="/" target="_blank">Currículum</a>
+  </nav>
+</menu>
+
+<menu>
+  <h4>Contacto</h4>
+  <nav>
+    <a href="https://www.linkedin.com/in/luka-saldivia" target="_blank">Linkedin</a>
+    <a href="mailto:saldivialuka@gmail.com" target="_blank">Correo electrónico</a>
+  </nav>
+</menu>
+</section>
+
+</div>
+
+<p>© 2023 Luka Saldivia. Todos los derechos reservados.</p>
+</footer>
+
+<style>
+
+*{
+  /* outline: 1px solid greenyellow; */
+}
+
+  .logo{
+    --_size: 20px;
+    margin: 0 auto;
+  }
+
+footer{
+
+  padding: 3rem 0 0;
+  
+  background: var(--clr-background);
+  background: radial-gradient(ellipse at center top, var(--clr-primary) 4%, var(--clr-background) 35%);
+  background-size: 1200px;
+
+  background-position: center;
+
+
+  position: relative;
+
+  margin-block: 2rem;
+
+  /* gap: 1rem; */
+}
+
+footer::before{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  top: -1.5px;
+  background: var(--clr-background);
+  background: radial-gradient(ellipse at center top, var(--clr-primary-light) 10%, var(--clr-background) 30%);
+  z-index: -1;
+
+  background-size: 1200px;
+
+background-position: center;
+}
+
+.wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+  
+}
+
+section{
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+menu{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2rem auto;
+}
+
+h4{
+  color: var(--clr-primary-light);
+}
+
+nav{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+nav a{
+  color: var(--clr-body);
+  text-decoration: none;
+}
+
+nav a:hover{
+  color: var(--clr-accent);
+}
+
+nav a[target="_blank"]::after{
+  content: ' \2197';
+}
+</style>
