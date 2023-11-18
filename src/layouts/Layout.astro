@@ -3,11 +3,12 @@ const { title } = Astro.props
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { ViewTransitions } from 'astro:transitions';
+import Scroll from '../components/Scroll.astro';
 
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@ import { ViewTransitions } from 'astro:transitions';
 </head>
 <body>
   <Header />
+  <Scroll  />
   <main class="content-grid">
     <slot />
   </main>
@@ -26,6 +28,7 @@ import { ViewTransitions } from 'astro:transitions';
 </html>
 
 <style is:global>
+
 
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica+SC&family=Montserrat:wght@100;200;300;400;500&family=Poppins:wght@300;400;600;700;800&family=Raleway:wght@100;200;500&family=Staatliches&display=swap');
 .content-grid,
@@ -61,7 +64,7 @@ import { ViewTransitions } from 'astro:transitions';
 }
 
 :is(.content-grid,.full-width) > *{
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .content-grid > .breakout{
@@ -79,7 +82,7 @@ import { ViewTransitions } from 'astro:transitions';
   --clr-background: #05050b;
   --clr-primary-light: #e9433d;
   --clr-primary: #ad1010;
-  --clr-secondary: #080836;
+  --clr-secondary: #0f0f1d;
   --clr-accent: #ffd900;
   
   --fs-200: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
@@ -92,8 +95,6 @@ import { ViewTransitions } from 'astro:transitions';
 
   --ff-base: 'Montserrat',sans-serif;
 }
-
-
 
 html {
   color-scheme: dark light;
@@ -110,6 +111,7 @@ h1,h2,h3,h4,h5,h6{
   color: var(--clr-text);
   text-wrap: balance;
   line-height: 1.3em;
+  margin-top: 1em;
 }
 
 h1{
@@ -148,7 +150,8 @@ body{
   background-color: var(--clr-background);
 
   overflow-y: scroll;
-  scrollbar-gutter: stable;
+
+  padding-right: 4px ;
 }
 
 .logo{
@@ -163,7 +166,7 @@ body{
   width: var(--_size, 20px );
 
   background: linear-gradient(45deg , var(--clr-text) 10%, var(--clr-primary), var(--clr-primary-light));
-  background-size: calc( var(--_size) * 8);
+  background-size: calc( var(--_size) * 16);
   transition: all .8s ease-out;
 }
 
@@ -180,6 +183,10 @@ body{
 .logo .sqr:nth-child(3){
   grid-column: 3 / 4;
   grid-row: 2 / 3;
+}
+
+::-webkit-scrollbar{
+  width: 0;
 }
 
 

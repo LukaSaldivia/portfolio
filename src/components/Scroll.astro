@@ -1,0 +1,132 @@
+---
+
+---
+
+<div class="scrollbar" transition:animate="none">
+  <div class="thumb"></div>
+</div>
+
+<style>
+  div.scrollbar{
+  position: fixed;
+  top: 0;
+  right: 3px;
+  height: 100vh;
+  --_width : 14px;
+  width: calc(var(--_width));
+  z-index: 9;
+
+}
+
+div.thumb{
+  width: calc(var(--_width) / 2);
+  height: var(--_height);
+  background-color: #333;
+  opacity: 0;
+  border-radius: 10px;
+  position: absolute;
+  right: calc(var(--_width) / 6);
+  translate: 0 var(--_top,0);
+  transition: opacity .4s ease-out, scale .3s ease-out;
+  transform-origin: right;
+
+}
+
+div.scrollbar:is(.active,:hover) div.thumb, div.thumb:hover{
+  opacity: 1;
+  cursor: grab;
+}
+
+div.thumb:hover,div.thumb.clicked,div.scrollbar:hover div.thumb{
+  scale: 1.5 1;
+}
+
+
+@media (any-hover: none){
+  div.scrollbar{
+    display: none;
+  }
+}
+</style>
+
+<script>
+  const body = document.body;
+const html = document.documentElement;
+const scrollBar = document.querySelector('.scrollbar');
+const thumb = scrollBar.querySelector('.thumb');
+
+let isDragging = false;
+let startY, startTop;
+
+let height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+let heightScroll = (window.innerHeight / height) * window.innerHeight;
+
+scrollBehavior();
+
+if (heightScroll === window.innerHeight) {
+  scrollBar.style.display = 'none';
+}
+
+document.addEventListener('scroll', scrollBehavior);
+scrollBar.addEventListener('mousedown', startDrag);
+document.addEventListener('mouseup', endDrag);
+document.addEventListener('mousemove', drag);
+window.addEventListener('resize',resize)
+document.addEventListener('scrollend', () => {
+  if (!isDragging) {
+    deactivateScrollbar();
+  }
+});
+
+function scrollBehavior() {
+  const top = (window.scrollY / height) * window.innerHeight;
+
+  scrollBar.setAttribute('style', `--_height: ${heightScroll}px; --_top: ${top}px`);
+
+  scrollBar.classList.add('active');
+
+  if (top === 0 || top + heightScroll === window.innerHeight) {
+    deactivateScrollbar();
+  }
+}
+
+function startDrag(e) {
+  isDragging = true;
+  updateThumb();
+  startY = e.clientY;
+  startTop = parseFloat(scrollBar.style.getPropertyValue('--_top')) || 0;
+  body.style.userSelect = 'none';
+}
+
+function endDrag() {
+  isDragging = false;
+  updateThumb();
+  body.style.userSelect = 'auto';
+  deactivateScrollbar();
+}
+
+function drag(e) {
+  if (isDragging) {
+    const newTop = Math.min(window.innerHeight - parseFloat(scrollBar.style.getPropertyValue('--_height')), Math.max(0, startTop + e.clientY - startY));
+    const scrollPercent = newTop / (window.innerHeight - parseFloat(scrollBar.style.getPropertyValue('--_height')));
+    body.style.userSelect = isDragging ? 'none' : 'auto';
+    window.scrollTo(0, scrollPercent * (body.scrollHeight - window.innerHeight + e.clientY));
+  }
+}
+
+function deactivateScrollbar() {
+  setTimeout(() => {
+    scrollBar.classList.remove('active');
+  }, 400);
+}
+
+function updateThumb() {
+  thumb.classList.toggle('clicked', isDragging);
+}
+
+function resize() {
+  height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+  heightScroll = (window.innerHeight / height) * window.innerHeight;
+  
+}
+</script>

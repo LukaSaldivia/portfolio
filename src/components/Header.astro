@@ -1,11 +1,11 @@
 ---
-
+import LinkOverflow from "./LinkOverflow.astro";
 ---
 
 <header class="content-grid" transition:persist>
   <div class="wrapper">
   
-  <a href="/" class="logo">
+  <a href="/" class="logo" aria-label="Inicio">
     <div class="sqr"></div>
     <div class="sqr"></div>
     <div class="sqr"></div>
@@ -16,9 +16,8 @@
     
 
     <nav>
-      <a href="experience" data-text="Experiencia">Experiencia</a>
-      <a href="about" data-text="Acerca de mí">Acerca de mí</a>
-
+      <LinkOverflow content='Acerca de mí' href='about' />
+      <LinkOverflow content='Contacto' href='contact' />
     </nav>
 </header>
 
@@ -54,8 +53,10 @@ window.addEventListener('scroll',()=>{
 
   header{
     position: sticky;
-    z-index: 99;
+    z-index: 9;
     transition: background-color .3s ease-in-out;
+
+    padding-block: 1.3rem;
 
 
   }
@@ -88,45 +89,5 @@ window.addEventListener('scroll',()=>{
     display: flex;
     gap: 1em;
   }
-  
-  nav a:not(.logo){
-    color: var(--clr-text);
-    color: transparent;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-
-    --_top-text : 1.2em;
-  }
-
-  nav a::before, nav a::after{
-    content: attr(data-text);
-    position: absolute;
-    color: var(--clr-text);
-    opacity: .6;
-    transition: top .4s;
-    left: 0;
-  }
-
-
-  
-
-  nav a::after, nav a:is(:hover,:focus)::before{
-    top: 0;
-  }
-
-  nav a::before{
-    top: var(--_top-text);
-    opacity: 1;
-  }
-  nav a:is(:hover,:focus)::after{
-    top: calc( var(--_top-text) * -1);
-  }
-
-
-
-
-
-
 
 </style>

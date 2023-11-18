@@ -1,5 +1,6 @@
 ---
-	import Layout from '../layouts/Layout.astro';
+	import ProjectCard from '../components/ProjectCard.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
 
@@ -14,6 +15,13 @@
 	</h1>
 </div>
 
+<section class="projects content-grid">
+	<h2>Proyectos destacados</h2>
+	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi/index.html" clr="#053f9a"/>
+	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi/index.html" clr="#444444"/>
+	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi/index.html" clr="#ff0000"/>
+</section>
+
 
 </Layout>
 
@@ -21,7 +29,7 @@
 
 	.hero{
 
-		--_height: 90vh;
+		--_height: 90svh;
 
 		height: var(--_height);
 
@@ -36,7 +44,6 @@
 
 		display: grid;
 		place-items: center;
-		/* padding: 8rem 0; */
 
 	}
 
@@ -47,6 +54,11 @@
 			color: var(--clr-accent);
 			-webkit-text-fill-color: var(--clr-accent);
 		}
+	}
+
+	.projects{
+		gap: var(--fs-400);
+		place-content: center;
 	}
 
 </style>
