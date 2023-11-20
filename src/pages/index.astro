@@ -7,7 +7,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Portfolio de Anner">
 
-	<div class="hero full-width content-grid">
+	<div class="hero full-width">
 	<h1>
 		Todo el mundo sabe lo que es una pala.<br>
 		Algunos sólo hacen pozos,<br>
@@ -15,11 +15,11 @@ import Layout from '../layouts/Layout.astro';
 	</h1>
 </div>
 
-<section class="projects content-grid">
+<section class="projects">
 	<h2>Proyectos destacados</h2>
-	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi/index.html" clr="#053f9a"/>
-	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi/index.html" clr="#444444"/>
-	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi/index.html" clr="#ff0000"/>
+	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi" clr="#774f00"/>
+	<ProjectCard src="losSimuladores.png" name="Web de Los Simuladores" descr="Página dinámica que se conecta a base de datos MySQL (sin deploy)" href="https://github.com/LukaSaldivia/web-simuladores" clr="#006633"/>
+	<ProjectCard src="apiSimuladores.png" name="API de Los Simuladores" descr="API de una recopilación de todo el contenido relacionado a Los Simuladores en Youtube" href="https://github.com/LukaSaldivia/simuladores-api" clr="#006600"/>
 </section>
 
 
@@ -43,12 +43,12 @@ import Layout from '../layouts/Layout.astro';
 		border-radius: 20px;
 
 		display: grid;
-		place-items: center;
 
 	}
 
 	h1{
-		margin-bottom: 3em;
+		display: block;
+		margin-top: calc(var(--_height) * 0.3);
 
 		& span.highlight{
 			color: var(--clr-accent);
@@ -57,6 +57,7 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.projects{
+		display: grid;
 		gap: var(--fs-400);
 		place-content: center;
 	}

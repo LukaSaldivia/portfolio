@@ -17,8 +17,9 @@ const clr_t = clr + "55"
 </a>
 <style>
 
+
+
   .outer-card, .inner-card{
-    display: block;
     position: relative;
     --_padding : .4rem;
     padding: var(--_padding);
@@ -26,19 +27,27 @@ const clr_t = clr + "55"
     border: 1px solid #333;
     text-decoration: none;
     color: initial;
-    height: min-content;
   }
   .outer-card{
+    display: block;
     background-color: #1118;
     --_radius : calc(10px + var(--_padding) * 2);
+
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 32%;
   }
+
   
   .inner-card{
     background-color: #18181888;
     --_radius : calc(10px + var(--_padding));
     z-index: 2;
-    padding-inline: 3rem;
-    padding-block: 0;
+    padding-inline: clamp(3ch,8vw,3rem);
+    padding-block: 1rem 0;
+    transition: border-color .3s ease-out;
+    display: grid;
+    grid-template-rows: 1fr auto;
   }
 
 
@@ -63,15 +72,15 @@ const clr_t = clr + "55"
     height: 100%;
     border-radius: var(--_radius);
     z-index: -1;
-    background: radial-gradient(circle at top, var(--_clr), var(--_clr-t), transparent);
+    background: radial-gradient(circle at bottom, var(--_clr) 40%, var(--_clr-t), transparent);
     opacity: 0;
     transition: opacity .3s ease-out;
+    filter: blur(7px);
   }
 
   header{
     display: grid;
     gap: .5rem;
-    translate: 0 1rem;
 
     & p {
       color: var(--clr-body);
@@ -81,17 +90,24 @@ const clr_t = clr + "55"
   .wrapper-img{
     overflow: hidden;
     padding: 0;
+    height: max-content;
   }
 
   .outer-card:hover{
 
     & img{
       translate: 0 3rem;
+      border-color: var(--_clr);
     }
 
-    & .inner-card::after{
-      opacity: 1;
+    & .inner-card{
+      border-color: #666;
+      &::after{
+        opacity: 1;
+      }
     }
+
+    
   }
   
 
@@ -100,7 +116,16 @@ const clr_t = clr + "55"
     border: 1px solid #666;
     border-radius: 10px;
     width: 100%;
-    translate: 0 max(4rem,4vw);
-    transition: translate .3s ease-out;
+    translate: 0 clamp(0rem, 20%, 4rem);
+    transition: translate .3s ease-out, box-shadow .4s ease-out;
   }
+
+  @keyframes reveal {
+    from{
+      opacity: 0;
+      scale: .9;
+      translate: 0 12rem;
+    }
+  }
+
 </style>
