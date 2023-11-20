@@ -1,26 +1,22 @@
 ---
-	import ProjectCard from '../components/ProjectCard.astro';
 import Layout from '../layouts/Layout.astro';
+import Projects from '../components/Projects.astro';
 ---
 
 
 
 <Layout title="Portfolio de Anner">
 
-	<div class="hero full-width">
+	<section class="hero full-width">
 	<h1>
 		Todo el mundo sabe lo que es una pala.<br>
-		Algunos sólo hacen pozos,<br>
+		Algunos sólo hacen <span class="bad">pozos</span>,<br>
 		otros hacemos <span class="highlight">bellos jardines</span>.
 	</h1>
-</div>
-
-<section class="projects">
-	<h2>Proyectos destacados</h2>
-	<ProjectCard src="paginaMessi.png" name="Página de Messi" descr="Página estática desarrollada para la carrera TUDAI" href="https://lukasaldivia.github.io/paginaMessi" clr="#774f00"/>
-	<ProjectCard src="losSimuladores.png" name="Web de Los Simuladores" descr="Página dinámica que se conecta a base de datos MySQL (sin deploy)" href="https://github.com/LukaSaldivia/web-simuladores" clr="#006633"/>
-	<ProjectCard src="apiSimuladores.png" name="API de Los Simuladores" descr="API de una recopilación de todo el contenido relacionado a Los Simuladores en Youtube" href="https://github.com/LukaSaldivia/simuladores-api" clr="#006600"/>
 </section>
+
+
+<Projects />
 
 
 </Layout>
@@ -52,14 +48,13 @@ import Layout from '../layouts/Layout.astro';
 
 		& span.highlight{
 			color: var(--clr-accent);
-			-webkit-text-fill-color: var(--clr-accent);
+			text-shadow: 0 0 .3rem var(--clr-accent);
+		}
+		& span.bad{
+			color: #aba;
 		}
 	}
 
-	.projects{
-		display: grid;
-		gap: var(--fs-400);
-		place-content: center;
-	}
+
 
 </style>
