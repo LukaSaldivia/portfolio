@@ -14,7 +14,7 @@ import Mail from './icons/misc/Mail.astro'
 import Search from './icons/misc/Search.astro'
 import User from './icons/misc/User.astro'
 
-let {name, color, size, tooltip} = Astro.props;
+let {name, color, size, tooltip, pos} = Astro.props;
 let [type,icon] = name.split(':')
 
 tooltip ??= {
@@ -23,6 +23,7 @@ tooltip ??= {
 }
 color ??= 'currentColor'
 size ??= 64
+pos ??="top"
 
 let {show, text} = tooltip
 show ??= true
@@ -57,8 +58,8 @@ const IconComponent = map[type][icon][0]
 const toolTipText = text ?? map[type][icon][1]
 ---
 
-<div data-container-anner>
-  <svg aria-label={tooltip} data-icon-anner width={size} height={size} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<div aria-label={toolTipText} data-container-anner class:list={[{"top" : pos == "top" , "bottom" : pos == "bottom", "left" : pos == "left", "right" : pos == "right"}]}>
+  <svg data-icon-anner width={size} height={size} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <IconComponent color={color}/>
   </svg>
   {
@@ -98,10 +99,28 @@ const toolTipText = text ?? map[type][icon][1]
     
   
     position: absolute;
+    z-index: 1;
+  }
+
+  [data-container-anner].top > *:not([data-icon-anner]){
     top: -2rem;
     left: 50%;
     translate: -50% 0;
-    z-index: 1;
+  }
+  [data-container-anner].bottom > *:not([data-icon-anner]){
+    bottom: -2rem;
+    left: 50%;
+    translate: -50% 0;
+  }
+  [data-container-anner].right > *:not([data-icon-anner]){
+    right: -4.2rem;
+    top: 50%;
+    translate: 0 -50%;
+  }
+  [data-container-anner].left > *:not([data-icon-anner]){
+    left: -4.2rem;
+    top: 50%;
+    translate: 0 -50%;
   }
 
 </style>

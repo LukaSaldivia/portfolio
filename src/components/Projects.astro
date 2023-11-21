@@ -33,8 +33,8 @@ const projects = [
 ]
 ---
 
-<section class="projects">
-	<h2>Proyectos destacados</h2>
+<section>
+	<h2>Proyectos seleccionados</h2>
   {
     projects.map(({src, name, descr, clr, href, icons}) => (
       <ProjectCard src={src} name={name} descr={descr} href={href} clr={clr} icons={icons}/>
@@ -43,18 +43,9 @@ const projects = [
 </section>
 
 <style>
-  	.projects{
+  	section{
 		display: grid;
 		gap: var(--fs-400);
 	}
 
-  h2{
-    width: fit-content;
-    background: linear-gradient(45deg, var(--clr-primary-light), var(--clr-text));
-    -webkit-background-clip: text;
-    color: transparent;
-
-    font-size: 3em;
-    margin-inline: auto;
-  }
 </style>

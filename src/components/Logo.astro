@@ -1,10 +1,11 @@
 ---
-let {size, hover} = Astro.props
+let {size, hover, shine} = Astro.props
 size ??= 20;
 hover ??= false
+shine ??= false
 ---
 
-<div class:list={['logo', {'hover': hover}]} style={"--_size: "+size+"px"}>
+<div class:list={['logo', {'hover': hover , 'shine' : shine}]} style={"--_size: "+size+"px"}>
   <div class="sqr"></div>
   <div class="sqr"></div>
   <div class="sqr"></div>
@@ -16,7 +17,6 @@ hover ??= false
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: repeat(2,1fr);  
   width: fit-content;
-  margin-inline: auto;
 }
 
 .logo .sqr{
@@ -46,5 +46,10 @@ hover ??= false
 .logo.hover:hover .sqr{
   background-position: top right;
   box-shadow: 0 0 var(--_size) 0 var(--clr-primary);
+}
+
+.logo.shine .sqr{
+  box-shadow: 0 0 calc(var(--_size) * 2) 0 var(--clr-text);
+
 }
 </style>

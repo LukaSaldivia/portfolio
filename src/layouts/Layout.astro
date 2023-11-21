@@ -32,8 +32,8 @@ import Footer from '../components/Footer.astro'
 
   
   --_padding-inline : 1rem;
-  --_content-max-width : 80ch;
-  --_breakout-max-width: 95ch;
+  --_content-max-width : max(50ch,65%);
+  --_breakout-max-width: max(65ch,75%);
 
   --content-size: min(100% - (var(--_padding-inline) * 2), var(--_content-max-width));
   --breakout-size: calc((var(--_breakout-max-width) - var(--_content-max-width)) / 2);
@@ -59,7 +59,6 @@ import Footer from '../components/Footer.astro'
   grid-column: content;
   padding-inline: var(--_padding-inline);
 }
-
 
 
 .content-grid > .breakout{
@@ -168,6 +167,25 @@ body{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #333;
+}
+
+main > section{
+  text-align: center;
+  margin-top: 2rem;
+}
+
+main > section > h2{
+  /* width: fit-content; */
+  background: linear-gradient(-45deg, var(--clr-text),var(--clr-primary-light));
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: calc(var(--fs-200) * .8);
+  /* letter-spacing: 1rem; */
+  text-transform: uppercase;
+}
+
+main > section *:not(h2){
+  text-align: start;
 }
 
 

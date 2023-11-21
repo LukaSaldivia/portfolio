@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Projects from '../components/Projects.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Experiments from '../components/Experiments.astro';
 ---
 
 
@@ -17,15 +20,19 @@ import Projects from '../components/Projects.astro';
 
 </section>
 
-<Projects />
+<About />
+<Experience />
 
+<Projects />
+<Experiments />
 </Layout>
 
 <style>
 
 	.hero{
 
-		--_height: 90svh;
+		--_height: 90vh;
+		--_height: 90dvh;
 
 		height: var(--_height);
 
