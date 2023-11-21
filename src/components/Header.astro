@@ -1,30 +1,34 @@
 ---
 import Icon from '../components/IconComponent/Icon.astro';
+import LinkOverflow from './LinkOverflow.astro';
+import Logo from './Logo.astro';
+
 
 ---
 
 <header class="content-grid">
   <div class="wrapper">
 
+    <a href="/" aria-label="Inicio">
+    <Logo size="16" hover={true} />
+    </a>
     
-    <a href="/" class="logo" aria-label="Inicio">
-    <div class="sqr"></div>
-    <div class="sqr"></div>
-    <div class="sqr"></div>
-  </a>
   
 
   
   
   
   <nav>
-      <a href="https://github.com/LukaSaldivia" target="_blank">
-      <Icon name="social:github" size="32" tooltip = { {show : false} }/>
-      </a>
-      <a href="https://www.linkedin.com/in/luka-saldivia" target="_blank">
-      <Icon name="social:linkedin" size="32" tooltip = { {show : false} }/>
-      </a>
-    </nav>
+    <a href="https://www.linkedin.com/in/luka-saldivia" target="_blank">
+    <Icon name="social:linkedin" size="24" tooltip = { {show : false} }/>
+    </a>
+    <a href="https://github.com/LukaSaldivia" target="_blank">
+    <Icon name="social:github" size="24" tooltip = { {show : false} }/>
+    </a>
+    <a href="mailto:saldivialuka@gmail.com" target="_blank">
+    <Icon name="misc:mail" size="24" tooltip = { {show : false} }/>
+    </a>
+  </nav>
 </header>
 
 <script>
@@ -79,16 +83,12 @@ window.addEventListener('scroll',()=>{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
   }
 
-  .logo{
-    --_size:var(--fs-200);
-  }
 
-  .logo:hover .sqr{
-  background-position: top right;
-  box-shadow: 0 0 var(--_size) 0 var(--clr-primary);
-}
+
+
 
   nav{
     display: flex;

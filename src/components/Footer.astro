@@ -1,15 +1,12 @@
 ---
+import Logo from "./Logo.astro"
 
 ---
 
 <footer class="content-grid">
   <div class="wrapper">
 
-  <div class="logo">
-    <div class="sqr"></div>
-    <div class="sqr"></div>
-    <div class="sqr"></div>
-  </div>
+<Logo size="20"/>
 <section>
 
 <menu>
@@ -29,7 +26,7 @@
 </menu>
 </section>
 
-<p>© 2023 Luka Saldivia. Todos los derechos reservados. <br> Última actualización: {new Date().getDate() + "/"+ (new Date().getMonth() + 1) + "/" + new Date().getFullYear()}</p>
+<p>Última actualización: {new Date().getDate() + "/"+ (new Date().getMonth() + 1) + "/" + new Date().getFullYear()}</p>
 </div>
 
 </footer>
