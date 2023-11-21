@@ -1,0 +1,72 @@
+---
+import TooltipIcon from './TooltipIcon.astro'
+
+import Javascript from './icons/tech/Javascript.astro'
+import HTML from './icons/tech/HTML.astro'
+import CSS from './icons/tech/CSS.astro'
+import PHP from './icons/tech/PHP.astro'
+import MySQL from './icons/tech/MySQL.astro'
+
+let {name, color, size} = Astro.props;
+let [type,icon] = name.split(':')
+
+color ??= 'currentColor';
+size ??= 64
+
+const map = {
+  "tech": {
+    "js" : [Javascript,"JavaScript"],
+    "html" : [HTML,"HTML"],
+    "css" : [CSS,"CSS"],
+    "php" : [PHP,"PHP"],
+    "mysql" : [MySQL,"MySQL"],
+  }
+}
+
+const IconComponent = map[type][icon][0]
+const toolTip = map[type][icon][1]
+---
+
+<div data-container-anner>
+  <svg aria-label={toolTip} data-icon-anner width={size} height={size} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <IconComponent color={color}/>
+  </svg>
+  <TooltipIcon text={toolTip} />
+</div>
+
+<style is:global>
+  [data-container-anner]{
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+  }
+
+
+
+  [data-container-anner]:hover > *:not([data-icon-anner]){
+    visibility: visible;
+  }
+
+  [data-icon-anner]{
+    display: block;
+    margin: auto;
+  }
+  
+  [data-container-anner] > *:not([data-icon-anner]){
+    font-size: 12px;
+    font-weight: bolder;
+    visibility: hidden;
+    background-color: var(--clr-text);
+    color: var(--clr-background);
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+  
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    translate: -50% 0;
+    z-index: 1;
+  }
+
+</style>

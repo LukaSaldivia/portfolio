@@ -1,5 +1,7 @@
 ---
-let {src, name, href, descr, clr} = Astro.props
+import Icon from "./IconComponent/Icon.astro";
+
+let {src, name, href, descr, clr, icons} = Astro.props
 src = "img/" + src
 const clr_t = clr + "55"
 ---
@@ -9,6 +11,13 @@ const clr_t = clr + "55"
     <header>
       <h3>{name}</h3>
       <p>{descr}</p>
+      <div class="icons-container">
+        {
+          icons.map((icon) => (
+            <Icon name={icon} size="24"/>
+          ))
+        }
+      </div>
     </header>
     <div class="wrapper-img">
     <img src={src} alt={"Imagen del proyecto" + name} aria-hidden="true">
@@ -73,7 +82,7 @@ const clr_t = clr + "55"
     border-radius: var(--_radius);
     z-index: -1;
     background: radial-gradient(circle at bottom, var(--_clr) 40%, var(--_clr-t), transparent);
-    opacity: 0;
+    opacity: 0.4;
     transition: opacity .3s ease-out;
     filter: blur(7px);
   }
@@ -96,7 +105,7 @@ const clr_t = clr + "55"
   .outer-card:hover{
 
     & img{
-      translate: 0 3rem;
+      translate: 0 clamp(0rem, 10%, 3rem);
       border-color: var(--_clr);
     }
 
@@ -123,9 +132,16 @@ const clr_t = clr + "55"
   @keyframes reveal {
     from{
       opacity: 0;
-      scale: .9;
       translate: 0 12rem;
     }
+  }
+
+  .icons-container{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+    color: var(--clr-body);
   }
 
 </style>
