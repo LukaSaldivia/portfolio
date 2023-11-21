@@ -1,5 +1,6 @@
 ---
-import LinkOverflow from "./LinkOverflow.astro";
+import Icon from '../components/IconComponent/Icon.astro';
+
 ---
 
 <header class="content-grid">
@@ -17,8 +18,12 @@ import LinkOverflow from "./LinkOverflow.astro";
   
   
   <nav>
-    <LinkOverflow content='Acerca de mí' href='about' />
-      <LinkOverflow content='Contacto' href='contact' />
+      <a href="https://github.com/LukaSaldivia" target="_blank">
+      <Icon name="social:github" size="32" tooltip = { {show : false} }/>
+      </a>
+      <a href="https://www.linkedin.com/in/luka-saldivia" target="_blank">
+      <Icon name="social:linkedin" size="32" tooltip = { {show : false} }/>
+      </a>
     </nav>
 </header>
 
@@ -87,7 +92,15 @@ window.addEventListener('scroll',()=>{
 
   nav{
     display: flex;
+    align-items: center;
     gap: 1em;
+  }
+
+  nav a{
+    color: var(--clr-body);
+  }
+  nav a:hover{
+    color: var(--clr-accent);
   }
 
 </style>

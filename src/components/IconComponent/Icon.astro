@@ -6,12 +6,26 @@ import HTML from './icons/tech/HTML.astro'
 import CSS from './icons/tech/CSS.astro'
 import PHP from './icons/tech/PHP.astro'
 import MySQL from './icons/tech/MySQL.astro'
+import Linkedin from './icons/social/Linkedin.astro'
+import GitHub from './icons/social/GitHub.astro'
+import Instagram from './icons/social/Instagram.astro'
+import Codepen from './icons/social/Codepen.astro'
+import Mail from './icons/misc/Mail.astro'
+import Search from './icons/misc/Search.astro'
+import User from './icons/misc/User.astro'
 
-let {name, color, size} = Astro.props;
+let {name, color, size, tooltip} = Astro.props;
 let [type,icon] = name.split(':')
 
-color ??= 'currentColor';
+tooltip ??= {
+  show : true,
+  text : null
+}
+color ??= 'currentColor'
 size ??= 64
+
+let {show, text} = tooltip
+show ??= true
 
 const map = {
   "tech": {
@@ -20,25 +34,44 @@ const map = {
     "css" : [CSS,"CSS"],
     "php" : [PHP,"PHP"],
     "mysql" : [MySQL,"MySQL"],
+  },
+  "social":{
+    "linkedin" : [Linkedin,"LinkedIn"],
+    "github" : [GitHub, "GitHub"],
+    "instagram" : [Instagram, "Instagram"],
+    "codepen" : [Codepen, "Codepen"],
+  },
+  "misc":{
+    "mail" : [Mail, "Mail"],
+    "search" : [Search, "Search"],
+    "user" : [User, "User"],
   }
 }
 
+if (text) {
+  text = text.replace(/%%/g,map[type][icon][1])
+}
+
 const IconComponent = map[type][icon][0]
-const toolTip = map[type][icon][1]
+
+const toolTipText = text ?? map[type][icon][1]
 ---
 
 <div data-container-anner>
-  <svg aria-label={toolTip} data-icon-anner width={size} height={size} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg aria-label={tooltip} data-icon-anner width={size} height={size} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <IconComponent color={color}/>
   </svg>
-  <TooltipIcon text={toolTip} />
+  {
+    show ? <TooltipIcon text={toolTipText} /> : ""
+  }
+  
 </div>
 
 <style is:global>
   [data-container-anner]{
     position: relative;
     display: inline-block;
-    width: fit-content;
+    width: min-content;
   }
 
 
@@ -53,6 +86,7 @@ const toolTip = map[type][icon][1]
   }
   
   [data-container-anner] > *:not([data-icon-anner]){
+    width: max-content;
     font-size: 12px;
     font-weight: bolder;
     visibility: hidden;
@@ -61,6 +95,7 @@ const toolTip = map[type][icon][1]
     text-align: center;
     padding: 5px 10px;
     border-radius: 6px;
+    
   
     position: absolute;
     top: -2rem;
