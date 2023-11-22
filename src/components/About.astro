@@ -6,11 +6,9 @@ import Logo from "./Logo.astro";
   <div class="content">
     <img src="/img/yo.png" alt="Imagen de Luka Saldivia">
     <div class="paragraphs">
-      <p>Soy Luka Saldivia, un programador <span>autodidacta</span> con una insaciable sed de conocimiento, especializado en el universo del <span>Front-End</span>.</p>
-      
-      <p>Mi capacidad de asimilar nuevas tecnologías de manera eficiente se destaca como uno de mis principales atributos.</p>
-        
-        <p>Mi día a día es un lienzo de código, donde resuelvo desafíos con la misma pasión con la que creo <span>interfaces cautivadoras</span>.</p>
+      <p>Soy Luka "Anner" Saldivia, un programador <span>autodidacta</span> con una insaciable sed de conocimiento, especializado en el universo del <span>Front-End</span>.</p>
+      <p>Mi capacidad de asimilar nuevas tecnologías de manera eficiente se destaca como uno de mis principales atributos.</p>  
+      <p>Mi día a día es un lienzo de código, donde resuelvo desafíos con la misma pasión con la que creo <span>interfaces cautivadoras</span>.</p>
       
     </div>
     
@@ -61,7 +59,16 @@ import Logo from "./Logo.astro";
 
   img{
     border-radius: 10px;
+    animation: coloring linear both;
+    animation-timeline: view();
+    animation-range: entry 30% cover 42%;
+
   }
 
+  @keyframes coloring{
+    from{
+      filter: grayscale(3) brightness(.1) opacity(.1);
+    }
+  }
 
 </style>
