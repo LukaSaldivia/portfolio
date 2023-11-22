@@ -78,7 +78,7 @@ const toolTipText = text ?? map[type][icon][1]
 
 
   [data-container-anner]:hover > *:not([data-icon-anner]){
-    visibility: visible;
+    display: block;
   }
 
   [data-icon-anner]{
@@ -87,10 +87,11 @@ const toolTipText = text ?? map[type][icon][1]
   }
   
   [data-container-anner] > *:not([data-icon-anner]){
+    display: none;
     width: max-content;
     font-size: 12px;
     font-weight: bolder;
-    visibility: hidden;
+    /* visibility: hidden; */
     background-color: var(--clr-text);
     color: var(--clr-background);
     text-align: center;

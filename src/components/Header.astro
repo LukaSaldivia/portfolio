@@ -8,22 +8,9 @@ import Logo from './Logo.astro';
 
 <header class="content-grid">
   <div class="wrapper">
+  
+  <Logo size="16" hover={true} />
 
-    <nav>
-      <a href="https://github.com/LukaSaldivia" target="_blank">
-      <Icon name="social:github" size="24" pos="bottom" tooltip={ { text : "Visita mi %%"}}/>
-      </a>
-      <a href="https://codepen.io/AnnerDev" target="_blank">
-      <Icon name="social:codepen" size="24" pos="bottom" tooltip={ { text : "Visita mi %%"}}/>
-      </a>
-    </nav>
-
-    <Logo size="16" hover={true} />
-  
-
-  
-  
-  
   <nav>
     <a href="https://www.linkedin.com/in/luka-saldivia" target="_blank">
     <Icon name="social:linkedin" size="24" pos="bottom" tooltip={ { text : "Visita mi %%"}}/>
@@ -32,6 +19,13 @@ import Logo from './Logo.astro';
     <a href="mailto:saldivialuka@gmail.com" target="_blank">
     <Icon name="misc:mail" size="24" pos="bottom" tooltip={ { text : "Enviame un correo"}}/>
     </a>
+
+    <a href="https://github.com/LukaSaldivia" target="_blank">
+      <Icon name="social:github" size="24" pos="bottom" tooltip={ { text : "Visita mi %%"}}/>
+      </a>
+      <a href="https://codepen.io/AnnerDev" target="_blank">
+      <Icon name="social:codepen" size="24" pos="bottom" tooltip={ { text : "Visita mi %%"}}/>
+      </a>
 
   </nav>
 </header>
@@ -76,6 +70,7 @@ window.addEventListener('scroll',()=>{
 
   }
 
+
   header.active{
     top: var(--_top);
   }
@@ -84,11 +79,9 @@ window.addEventListener('scroll',()=>{
     background-color: var(--clr-background);
   }
   .wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-basis: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-items: end;
   }
 
 
@@ -99,7 +92,6 @@ window.addEventListener('scroll',()=>{
     display: flex;
     align-items: center;
     gap: 1em;
-    flex-grow: 1;
   }
 
   nav a{
@@ -107,10 +99,6 @@ window.addEventListener('scroll',()=>{
   }
   nav a:hover{
     color: var(--clr-accent);
-  }
-
-  nav:last-child{
-    justify-content: end;
   }
 
 </style>
