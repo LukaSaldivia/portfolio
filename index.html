@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <header class="full-width-column">
+
+    <div class="light-bar"></div>
+
+    <a href="#" id="logo" aria-label="Home">
+      <span></span><span></span><span></span>
+    </a>
+
+    <nav>
+      <div class="optional-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+      </div>
+      <a href="#contact" class="cta">Contact</a>
+    </nav>
+  </header>
+  <main class="full-width-column">
+    <section class="hero stack">
+      <div class="ring">
+
+      </div>
+    </section>
+  </main>
+  <footer class="full-width-column"></footer>
+
+
+  <!-- SVG -->
+  <svg class="none" viewBox="0 0 100 100">
+    <defs>
+      <mask id="ring-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+        <rect width="1" height="1" x="0" y="0" fill="white" />    
+        <circle fill="black" r=".4" cx=".5" cy=".5" />  
+       </mask>
+     </defs>
+     <circle r="30" cx="50" cy="50" fill="white" mask="url(#ring-mask)"/>    
+  </svg>
+</body>
+
+</html>
