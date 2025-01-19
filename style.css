@@ -9,7 +9,7 @@
   --clr-primary-dark: #8D1313;
 
   --clr-neutral-dark: #060F0A;
-  --clr-neutral-dark-light: #041A0D;
+  --clr-neutral-dark-light: #042511;
 
   --clr-neutral-light: #ECF7F1;
   --clr-neutral-light-dark: #BDBDBD;
@@ -65,6 +65,16 @@ svg {
   display: block;
 }
 
+svg.icon{
+  height: 1.2cap;
+  display: inline;
+  margin-right: .5cap;
+
+  &.primary{
+    fill: var(--clr-primary);
+  }
+}
+
 img {
   height: auto;
   vertical-align: middle;
@@ -85,6 +95,11 @@ img {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+h1,h2,h3,h4,h5 {
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 h1 {
@@ -122,6 +137,10 @@ h5 {
 
 a {
   text-decoration: none;
+}
+
+p{
+  text-wrap: pretty;
 }
 
 body,
@@ -167,7 +186,9 @@ body {
   font-size: var(--fs-body);
   font-family: var(--ff);
 
-  min-height: 100vh;
+  min-height: 900vh;
+  background-attachment: fixed;
+  background-position: center;
 
 
   >* {
@@ -180,7 +201,9 @@ body {
 body>header {
   grid-row: header;
   z-index: 1;
-  position: relative;
+  position: sticky;
+
+  top: var(--_top-header);
 
   grid-template-rows: [light-start] 5px [light-end navigation-start] auto [navigation-end];
   align-items: center;
@@ -204,7 +227,7 @@ body>header {
     width: calc(var(--_square-size) * 3);
     height: calc(var(--_square-size) * 2);
     mix-blend-mode: difference;
-
+    
     >span {
       aspect-ratio: 1;
       width: var(--_square-size);
@@ -256,17 +279,55 @@ body>main {
 
   >.hero {
     margin-top: -60px;
+    height: 90vh;
+    height: 90dvh;
+
+    .__header-group{
+      display: grid;
+
+      row-gap: calc(var(--_mobile-gap, 15) * clamp(0px, (100vw - 639px) * -1 , 1px));
+
+      grid-template-rows: repeat(3, auto);
+
+      *{
+        grid-column: 1;
+      }
+
+      h5{
+        font-weight: lighter;
+        grid-row: 1;
+      }
+
+      .caption{
+        color: var(--clr-neutral-light-dark);
+        grid-row: 3;
+      }
+
+      .links{
+        justify-self: end;
+        grid-row: 3;
+      }
+
+      @media screen and (width < 639px){
+        
+        .links{
+          justify-self: start;
+          grid-row: 4;
+        }
+        
+      }
+    }
+
     .ring {
       aspect-ratio: 1;
-      height: min(685px, var(--content-size));
+      width: min(685px, var(--content-size));
       border-radius: 50%;
       opacity: .5;
       background-image: linear-gradient(var(--clr-neutral-light), #FF714E 17%, var(--clr-primary-dark) 30%, transparent 82%);
-      /* mask-image: radial-gradient(transparent 0, transparent 55%, black 55%); */
 
-      /* clip-path: circle(30% at 50% 50%); */
       mask-image: url(#ring-mask);
       mask-size: cover;
+      z-index: -1;
     }
   }
 }
