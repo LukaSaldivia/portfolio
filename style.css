@@ -188,7 +188,6 @@ body {
   font-size: var(--fs-body);
   font-family: var(--ff);
 
-  min-height: 900vh;
   background-attachment: fixed;
   background-position: center;
 
