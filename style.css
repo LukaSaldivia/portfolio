@@ -14,6 +14,8 @@
   --clr-neutral-light: #ECF7F1;
   --clr-neutral-light-dark: #BDBDBD;
 
+  --clr-available : hsl(133, 100%, 64%);
+
   /* Typography */
 
   /* https://www.fluid-type-scale.com/calculate */
@@ -68,7 +70,7 @@ svg {
 svg.icon{
   height: 1.2cap;
   display: inline;
-  margin-right: .5cap;
+  margin-right: .2cap;
 
   &.primary{
     fill: var(--clr-primary);
@@ -309,9 +311,11 @@ body>main {
       }
 
       @media screen and (width < 639px){
+
+        text-align: center;
         
         .links{
-          justify-self: start;
+          justify-self: center;
           grid-row: 4;
         }
         
@@ -328,6 +332,33 @@ body>main {
       mask-image: url(#ring-mask);
       mask-size: cover;
       z-index: -1;
+    }
+
+    .available-badge{
+      margin-top: calc(280px + 50 * clamp(0px, (100vw - 639px) * -1 , 1px));
+
+      background-color: var(--clr-neutral-dark-light);
+      border: 0.5px solid var(--clr-neutral-light-dark);
+      border-radius: 6px;
+      padding-inline: 16px;
+      padding-block: 8px;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      column-gap: 8px;
+
+      .indicator{
+        background-color: var(--clr-available);
+        border-radius: 50%;
+        aspect-ratio: 1;
+        width: 1.5cap;
+        display: block;
+
+        box-shadow: 0 0 0 0px hsl(from var(--clr-available) h s l / .5);
+
+
+        animation: pulse 1s infinite ease-out;
+      }
     }
   }
 }
@@ -351,5 +382,11 @@ body>footer {
 
   >* {
     grid-area: stack;
+  }
+}
+
+@keyframes pulse {
+  to{
+    box-shadow: 0 0 0 6px transparent;
   }
 }
