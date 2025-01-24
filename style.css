@@ -246,6 +246,7 @@ body>header {
       background-color: var(--clr-neutral-light);
       transform-origin: center;
       transition: rotate .3s ease-out;
+      border-radius: 5px;
 
     }
 
