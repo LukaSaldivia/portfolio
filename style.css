@@ -455,6 +455,8 @@ body>main {
       .links{
         justify-self: end;
         grid-row: 3;
+        display: flex;
+        gap: 8px;
       }
 
       @media screen and (width < 639px){
