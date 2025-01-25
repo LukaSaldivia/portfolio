@@ -26,7 +26,7 @@
   --fs-h4: clamp(1.56rem, 0.33vi + 1.49rem, 1.79rem);
   --fs-h3: clamp(1.95rem, 0.44vi + 1.85rem, 2.25rem);
   --fs-h2: clamp(2.44rem, 0.58vi + 2.31rem, 2.84rem);
-  --fs-h1: clamp(3.05rem, 0.77vi + 2.88rem, 3.57rem);
+  --fs-h1: clamp(3.05rem, 0.9vi + 2.88rem, 4.57rem);
 
   --ff: 'Space Grotesk', system-ui, sans-serif;
 
@@ -122,18 +122,29 @@ h1 {
   font-size: var(--fs-h1);
   font-weight: bold;
   color: var(--clr-neutral-light);
+
+  background-image: linear-gradient(180deg, var(--clr-neutral-light), var(--clr-neutral-light-dark));
+  background-clip: text;
+  color: transparent;
 }
 
 h2 {
   font-size: var(--fs-h2);
   font-weight: bold;
   color: var(--clr-primary);
+
+  background-image: linear-gradient(0deg, var(--clr-neutral-light), var(--clr-neutral-light-dark));
+  background-clip: text;
+  color: transparent;
 }
 
 h3 {
   font-size: var(--fs-h3);
   font-weight: bold;
-  color: var(--clr-neutral-light-dark);
+  color: var(--clr-primary);
+
+
+
 }
 
 h4 {
