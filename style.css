@@ -5,16 +5,21 @@
   font-size: 16px;
 
   /* Colors */
-  --clr-primary: #A12828;
-  --clr-primary-dark: #8D1313;
+  --clr-primary: hsl(0, 60%, 39%);
+  --clr-primary-light: hsl(12, 100%, 65%);
+  --clr-primary-dark: hsl(0, 76%, 31%);
 
-  --clr-neutral-dark: #060F0A;
-  --clr-neutral-dark-light: #042511;
+  --clr-accent: hsl(133, 100%, 64%);
 
-  --clr-neutral-light: #ECF7F1;
-  --clr-neutral-light-dark: #BDBDBD;
+  --clr-neutral-dark: hsl(147, 43%, 4%);
+  --clr-neutral-dark-light: hsl(144, 80%, 8%);
 
-  --clr-available : hsl(133, 100%, 64%);
+  --clr-neutral-light: hsl(147, 41%, 95%);
+  --clr-neutral-light-dark: hsl(0, 0%, 74%);
+
+  --clr-available : var(--clr-accent);
+
+
 
   /* Typography */
 
@@ -45,6 +50,11 @@
   font-family: inherit;
   color: inherit;
   font-size: inherit;
+}
+
+::selection{
+  background-color: var(--clr-accent);
+  color: var(--clr-neutral-dark);
 }
 
 
@@ -118,6 +128,7 @@ h1,h2,h3,h4,h5 {
   text-wrap: balance;
 }
 
+
 h1 {
   font-size: var(--fs-h1);
   font-weight: bold;
@@ -126,6 +137,7 @@ h1 {
   background-image: linear-gradient(180deg, var(--clr-neutral-light), var(--clr-neutral-light-dark));
   background-clip: text;
   color: transparent;
+
 }
 
 h2 {
@@ -168,6 +180,7 @@ a {
 
 p{
   text-wrap: pretty;
+  color: var(--clr-neutral-light-dark);
 }
 
 body,
@@ -218,7 +231,6 @@ body {
 
   background-attachment: fixed;
   background-position: center;
-
 
   >* {
     grid-column: container;
@@ -279,16 +291,14 @@ body>header {
   #logo {
     grid-row: navigation;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     --_square-size: 14px;
+    grid-template-columns: repeat(3, var(--_square-size));
+    grid-template-rows: repeat(2, var(--_square-size));
     width: calc(var(--_square-size) * 3);
     height: calc(var(--_square-size) * 2);
-    mix-blend-mode: difference;
     
     >span {
       aspect-ratio: 1;
-      width: var(--_square-size);
       background-color: var(--clr-neutral-light);
 
       &:nth-child(1) {
@@ -438,15 +448,20 @@ body>main {
   grid-row: main;
   align-items: start;
 
+  > section{
+
+    margin-top: 60px;
+    row-gap: 8px;
+  }
+
   >.hero {
-    margin-top: -60px;
-    height: 90vh;
-    height: 90dvh;
+    margin-top: calc(-240 * clamp(0px, (100vw - 650px), 1px) + 180px);
+    height: auto;
 
     .__header-group{
       display: grid;
 
-      row-gap: calc(var(--_mobile-gap, 15) * clamp(0px, (100vw - 639px) * -1 , 1px));
+      row-gap: calc(var(--_mobile-gap, 15) * clamp(0px, (100vw - 650px) * -1 , 1px));
 
       grid-template-rows: repeat(3, auto);
 
@@ -471,7 +486,7 @@ body>main {
         gap: 8px;
       }
 
-      @media screen and (width < 639px){
+      @media screen and (width < 650px){
 
         text-align: center;
         
@@ -488,7 +503,7 @@ body>main {
       width: min(685px, var(--content-size));
       border-radius: 50%;
       opacity: .5;
-      background-image: linear-gradient(var(--clr-neutral-light), #FF714E 17%, var(--clr-primary-dark) 30%, transparent 82%);
+      background-image: linear-gradient(var(--clr-neutral-light), var(--clr-primary-light) 17%, var(--clr-primary-dark) 30%, transparent 82%);
 
       mask-image: url(#ring-mask);
       mask-size: cover;
@@ -496,7 +511,7 @@ body>main {
     }
 
     .available-badge{
-      margin-top: calc(280px + 50 * clamp(0px, (100vw - 639px) * -1 , 1px));
+      margin-top: calc(280px + 50 * clamp(0px, (100vw - 650px) * -1 , 1px));
 
       background-color: var(--clr-neutral-dark-light);
       border: 0.5px solid var(--clr-neutral-light-dark);
@@ -521,6 +536,30 @@ body>main {
         animation: pulse 1s infinite ease-out;
       }
     }
+  }
+
+  .about-me{
+
+    margin-top:  calc(90 * clamp(0px, (100vw - 650px) * -1, 1px));
+
+    justify-items: center;
+
+    .container{
+      width: min(100%, 580px);
+      background-image: radial-gradient(hsl(from var(--clr-accent) h s l /.1) , transparent 60%);
+
+      display: grid;
+      gap: 1em;
+      
+      padding: 10px;
+      
+      span.bold{
+        color: var(--clr-accent);
+        font-weight: 700;
+        text-shadow: 0 0 30px var(--clr-accent);
+      }
+    }
+
   }
 }
 
