@@ -78,7 +78,7 @@ svg {
 }
 
 svg.icon{
-  height: 1.2cap;
+  height: 1.5cap;
   display: inline;
   margin-right: .2cap;
 
@@ -452,6 +452,7 @@ body>main {
 
     margin-top: 60px;
     row-gap: 8px;
+    --padding-inline: 0;
   }
 
   >.hero {
@@ -459,6 +460,7 @@ body>main {
     height: auto;
 
     .__header-group{
+      animation-delay: .6s;
       display: grid;
 
       row-gap: calc(var(--_mobile-gap, 15) * clamp(0px, (100vw - 650px) * -1 , 1px));
@@ -511,6 +513,8 @@ body>main {
     }
 
     .available-badge{
+      animation-delay: .4s;
+      animation-name: slide-in;
       margin-top: calc(280px + 50 * clamp(0px, (100vw - 650px) * -1 , 1px));
 
       background-color: var(--clr-neutral-dark-light);
@@ -536,9 +540,16 @@ body>main {
         animation: pulse 1s infinite ease-out;
       }
     }
+
+    > *{
+      animation-duration: .5s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: backwards;
+      animation-name: fade-in;
+    }
   }
 
-  .about-me{
+  >.about-me{
 
     margin-top:  calc(90 * clamp(0px, (100vw - 650px) * -1, 1px));
 
@@ -561,10 +572,65 @@ body>main {
     }
 
   }
+
+  >.selected-projects{
+    
+    display: grid;
+    row-gap: 32px;
+
+    > .projects{
+
+      display: grid;
+      gap: 4rem;
+
+      >.project{
+
+        display: grid;
+        gap: 1rem;
+
+        h4{
+          display: flex;
+          align-items: center;
+          gap: .5rem;
+        }
+
+
+        .img-wrapper{
+          border-radius: 10px;
+          border-bottom-left-radius: 0;
+          overflow: hidden;
+          
+          
+          img{
+            aspect-ratio: 2.2/1;
+            object-fit: cover;
+            transition: scale .3s ease-out, translate .3s ease-out;
+          }
+          
+        }
+
+        &:is(:hover, :focus-within, :focus-visible){
+          img{
+            scale: 1.1;
+            --_translate-x: calc(-1 * var(--_mouse-x) * 90px);
+            --_translate-y: calc(-1 * var(--_mouse-y) * 20px);
+            translate: var(--_translate-x) var(--_translate-y);
+          }
+        }
+      }
+
+    }
+
+
+    }
 }
 
 body>footer {
+  margin-top: 32px;
   grid-row: footer;
+  background-color: var(--clr-neutral-dark);
+  padding-block: 16px;
+  border-top: 1px solid var(--clr-neutral-dark-light);
 }
 
 .cta {
@@ -589,4 +655,18 @@ body>footer {
   to{
     box-shadow: 0 0 0 6px transparent;
   }
+}
+
+@keyframes slide-in{
+  from{
+    translate: 0 200px;
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in{
+  from{
+    opacity: 0;
+  }
+  
 }
