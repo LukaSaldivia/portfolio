@@ -6,7 +6,7 @@
   <script defer src="main.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luka's Portfolio</title>
+  <title>Luka Saldivia - Frontend Developer's portfolio</title>
 </head>
 
 <body>
@@ -100,7 +100,7 @@
     <section class="about-me content-column" id="about">
 
       <div class="container">
-      <p>Hello! I'm Luka Saldivia, a <span class="bold">front-end developer</span>.</p> 
+      <p>Hello! I'm Luka Saldivia, a <span class="bold encripted">front-end developer</span>.</p> 
       
       <p>I’m known for quickly learning new technologies and adapting to different environments, enabling me to tackle
           projects with confidence and efficiency.
@@ -115,24 +115,26 @@
 
       <div class="projects">
         <a href="https://lukasaldivia.github.io/anner-sheets" class="project" target="_blank">
-          <div class="img-wrapper">
+          <div class="img-wrapper stack">
             <img src="img/projects/anner-sheets.webp" alt="">
+            <div class="blur-ring"></div>
           </div>
-          <h4>
+          <div role="group">
             <svg class="icon" viewBox="0 0 24 24"><path fill="#289F38" d="M19 3H5c-1.103 0-2 .897-2 2v4h18V5c0-1.103-.897-2-2-2M3 19c0 1.103.897 2 2 2h8V11H3zm12 2h4c1.103 0 2-.897 2-2v-8h-6z"/></svg>  
-            Anner Sheets
-          </h4>
+            <h4 class="encripted">Anner Sheets</h4>
+          </div>
 
           <p>Anner Sheets is a simple practice project, cloning the basics of apps like Google Sheets or Microsoft Excel. Its sole purpose is to improve programming skills.</p>
         </a>
         <a href="https://lukasaldivia.github.io/aldesal-games/TP3/EntregaFinal/home.html" class="project" target="_blank">
-          <div class="img-wrapper">
+          <div class="img-wrapper stack">
             <img src="img/projects/aldesal-games.webp" alt="">
+            <div class="blur-ring"></div>
           </div>
-          <h4>
+          <div role="group">
             <svg class="icon" viewBox="0 0 24 24"><path fill="#dc2626" d="M16 6H8a6 6 0 0 0 0 12h8a6 6 0 0 0 0-12m-5 7H9v2H7v-2H5v-2h2V9h2v2h2zm3.5 2a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3m3-3a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3"/></svg>
-            Aldesal Games
-          </h4>
+            <h4 class="encripted">Aldesal Games</h4>
+          </div>
 
           <p>A static, game-oriented page created as a college assignment. It includes an implemented game: Star Clash Battlefront, a themed Connect 4.</p>
         </a>
@@ -152,12 +154,30 @@
   <svg class="none" viewBox="0 0 100 100">
     <defs>
       <mask id="ring-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
-        <rect width="1" height="1" x="0" y="0" fill="white" />
+        <rect width="1" height="1" x="0" y="0" fill="black" />
+        <circle fill="white" r="1" cx=".5" cy=".5" />
         <circle fill="black" r=".4" cx=".5" cy=".5" />
       </mask>
     </defs>
-    <circle r="30" cx="50" cy="50" fill="white" mask="url(#ring-mask)" />
   </svg>
+
+
+  <svg class="none">
+
+    <defs>
+      <filter id="noise">
+          <feTurbulence baseFrequency="0.9" numOctaves="9" seed="0" type="fractalNoise">
+              <animate attributeName="seed" values="0;50" dur="500ms" repeatCount="indefinite"/>
+          </feTurbulence>            
+          <feDisplacementMap in="SourceGraphic" scale="0">
+              <animate attributeName="scale" values="0;50;0" dur="1s" repeatCount="1"/>
+
+          </feDisplacementMap>
+          
+      </filter>
+  </defs>
+
+</svg>
 </body>
 
 </html>

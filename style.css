@@ -586,9 +586,10 @@ body>main {
       >.project{
 
         display: grid;
-        gap: 1rem;
+        gap: .5rem;
 
-        h4{
+        div[role="group"]{
+          margin-top: .5rem;
           display: flex;
           align-items: center;
           gap: .5rem;
@@ -598,7 +599,19 @@ body>main {
         .img-wrapper{
           border-radius: 10px;
           border-bottom-left-radius: 0;
-          overflow: hidden;
+          overflow: hidden;    
+          isolation: isolate;      
+          
+
+          .blur-ring{
+            aspect-ratio: 1;
+            width: 200px;
+            backdrop-filter: saturate(9) blur(30px);
+            z-index: 1;
+            scale: 0;
+            border-radius: 50%;
+            
+          }
           
           
           img{
@@ -610,11 +623,20 @@ body>main {
         }
 
         &:is(:hover, :focus-within, :focus-visible){
+
+          .blur-ring{
+            scale: 10;
+            opacity: 0;
+            transition: scale .6s ease-out, opacity .4s;
+
+          }
+
           img{
             scale: 1.1;
-            --_translate-x: calc(-1 * var(--_mouse-x) * 90px);
+            --_translate-x: calc(-1 * var(--_mouse-x) * 50px);
             --_translate-y: calc(-1 * var(--_mouse-y) * 20px);
             translate: var(--_translate-x) var(--_translate-y);
+
           }
         }
       }
