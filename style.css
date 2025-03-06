@@ -683,12 +683,14 @@ body>footer {
   from{
     translate: 0 200px;
     opacity: 0;
+    filter: blur(10px);
   }
 }
 
 @keyframes fade-in{
   from{
     opacity: 0;
+    filter: blur(10px);
   }
   
 }
