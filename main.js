@@ -25,6 +25,7 @@ let observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       hackerType(entry.target, entry.target.textContent)
+      observer.unobserve(entry.target)
     }
   })
 })
