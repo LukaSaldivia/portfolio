@@ -115,7 +115,7 @@ let observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       hackerType(entry.target, entry.target.textContent)
-      // observer.unobserve(entry.target)
+      observer.unobserve(entry.target)
     }
   })
 }, {
@@ -125,36 +125,26 @@ let observer = new IntersectionObserver((entries) => {
 encripted.forEach((el)=>observer.observe(el))
 })
 
-function hackerType(element = HTMLElement, originalText = ""){
-  element.textContent = ""
-
-  setTimeout(()=>{
-
-
-    for (let i = 0; i <= originalText.length; i++) {
-
-      setTimeout(() => {
-        for (let j = 0; j < 5; j++) {
-          let fixedText = originalText.substring(0, i)
-          let randomText = randomizedText(originalText.substring(i))
-          element.textContent = fixedText + randomText
-        }
-      }, i * 600 / originalText.length)
-  
-    }
-
-  }, 150)
-
-
+function hackerType(element = HTMLElement, originalText = "") {
+  const iterations = 15; // Número de iteraciones por letra
+  for (let i = 0; i <= originalText.length * iterations; i++) {
+    setTimeout(() => {
+      let fixedText = originalText.substring(0, Math.floor(i / iterations));
+      let randomText = randomizedText(originalText.substring(Math.floor(i / iterations)).length);
+      element.textContent = fixedText + randomText;
+    }, i * 700 / (originalText.length * iterations));
+  }
 }
 
-function randomizedText(text = ""){
+function randomizedText(length = 0){
 
   let newText = ''
 
-  text.split('').forEach(() => {
+  for (let i = 0; i < length; i++) {
     newText += letters[Math.floor(Math.random() * letters.length)]
-  })
+    
+  }
+  
 
   return newText
 
