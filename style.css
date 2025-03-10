@@ -339,7 +339,17 @@ body>header {
         display: flex;
         align-items: center;
         gap: 8px;
+        transition: filter .3s ease-out;
       }
+
+      &:has(a:is(:hover,:focus-visible)) a:not(:is(:hover,:focus-visible)){
+        filter: brightness(.1);
+      }
+    }
+
+    .cta{
+      display: grid;
+      overflow: hidden;
     }
 
 
@@ -460,7 +470,7 @@ body>main {
     height: auto;
 
     .__header-group{
-      animation-delay: .6s;
+
       display: grid;
 
       row-gap: calc(var(--_mobile-gap, 15) * clamp(0px, (100vw - 650px) * -1 , 1px));
@@ -486,6 +496,15 @@ body>main {
         grid-row: 3;
         display: flex;
         gap: 8px;
+
+        > *{
+          transition: filter .6s ease-out;
+        }
+        
+        > *:is(:hover,:focus-visible){
+          filter: brightness(2);
+          transition: filter .1s ease-out;
+        }
       }
 
       @media screen and (width < 650px){
@@ -513,7 +532,6 @@ body>main {
     }
 
     .available-badge{
-      animation-delay: .4s;
       animation-name: slide-in;
       margin-top: calc(280px + 50 * clamp(0px, (100vw - 650px) * -1 , 1px));
 
@@ -542,8 +560,6 @@ body>main {
     }
 
     > *{
-      animation-duration: .5s;
-      animation-timing-function: ease-out;
       animation-fill-mode: backwards;
       animation-name: fade-in;
     }
@@ -593,6 +609,7 @@ body>main {
           display: flex;
           align-items: center;
           gap: .5rem;
+          height: var(--fs-h4);
         }
 
 
@@ -622,7 +639,7 @@ body>main {
           
         }
 
-        &:is(:hover, :focus-within, :focus-visible){
+        &:is(:hover, :focus-visible){
 
           .blur-ring{
             scale: 10;
@@ -637,6 +654,15 @@ body>main {
             --_translate-y: calc(-1 * var(--_mouse-y) * 20px);
             translate: var(--_translate-x) var(--_translate-y);
 
+          }
+
+          h4{
+            text-decoration: underline;
+            text-underline-offset: 3px;
+
+            &::after{
+              content: ' 🡥';
+            }
           }
         }
       }
@@ -693,4 +719,31 @@ body>footer {
     filter: blur(10px);
   }
   
+}
+
+
+/* dom loaded */
+body.complete{
+  > main{
+
+    .__header-group{
+      animation-delay: .6s;
+    }
+
+    .hero{
+
+      .available-badge{
+        animation-delay: .4s;
+        animation-name: slide-in;
+
+      }
+
+      > *{
+        animation-duration: .5s;
+        animation-timing-function: ease-out;
+
+      }
+
+    }
+  }
 }
