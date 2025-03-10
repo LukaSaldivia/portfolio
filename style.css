@@ -50,6 +50,7 @@
   font-family: inherit;
   color: inherit;
   font-size: inherit;
+
 }
 
 ::selection{
@@ -195,7 +196,7 @@ body,
 
   display: grid;
   grid-template-columns:
-    [full-width-start] var(--full-width-size) var(--padding-inline) [content-start] var(--content-size) [content-end] var(--padding-inline) var(--full-width-size) [full-width-end];
+    [full-width-start] var(--full-width-size)  [content-start] var(--content-size) [content-end]  var(--full-width-size) [full-width-end];
 }
 
 :is(.content-column, .full-width-column)>* {
@@ -233,7 +234,7 @@ body {
   background-position: center;
 
   >* {
-    grid-column: container;
+    grid-column: content;
   }
 
 
@@ -567,7 +568,10 @@ body>main {
 
   >.about-me{
 
-    margin-top:  calc(90 * clamp(0px, (100vw - 650px) * -1, 1px));
+    scroll-margin-block-start: 90px;
+
+
+    margin-top: calc(90 * clamp(0px, (100vw - 650px) * -1, 1px));
 
     justify-items: center;
 
@@ -584,6 +588,8 @@ body>main {
         color: var(--clr-accent);
         font-weight: 700;
         text-shadow: 0 0 30px var(--clr-accent);
+        word-break: keep-all;
+        white-space: nowrap;
       }
     }
 
@@ -717,6 +723,8 @@ body>footer {
   from{
     opacity: 0;
     filter: blur(10px);
+    background: var(--_flashlight-color);
+    padding: 20px;
   }
   
 }
@@ -728,6 +736,7 @@ body.complete{
 
     .__header-group{
       animation-delay: .6s;
+      --_flashlight-color: var(--clr-neutral-light);
     }
 
     .hero{

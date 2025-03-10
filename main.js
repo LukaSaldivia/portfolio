@@ -10,6 +10,10 @@ const projects = $('.projects');
 const encripted = $$('.encripted')
 const contactBtn = $("#contact_header_btn")
 const contact_span = _$(contactBtn, "span")
+const optional_links = $(".optional-links")
+const checkbox_menuToggle = _$(header, 'input[type="checkbox"]')
+
+
 const letters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM-_.".split('')
 
 let actualScroll = 0
@@ -123,6 +127,14 @@ let observer = new IntersectionObserver((entries) => {
 })
 
 encripted.forEach((el)=>observer.observe(el))
+})
+
+
+// ux on mobile improve on navigation on head link
+optional_links.addEventListener("click", ({target}) => {
+  if(target.closest("a")){
+    checkbox_menuToggle.checked = false
+  }
 })
 
 function hackerType(element = HTMLElement, originalText = "") {
