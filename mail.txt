@@ -1,0 +1,6 @@
+https://docs.google.com/forms/d/e/1FAIpQLSfyH9iz54yL8mzqWSF0D7tnOVKIykYqxconzhriDJ_PJ_sZzQ/formResponse
+
+entry.1729279603=999-LU <- Nombre
+entry.2136015528=999-a@1.com <- Correo
+entry.1043904524=999-CTC <- categoria
+entry.1498443250=999-txt <- mensaje

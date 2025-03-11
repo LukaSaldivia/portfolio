@@ -109,6 +109,13 @@ img {
   shape-margin: 1rem;
 }
 
+iframe.none{
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -463,7 +470,6 @@ body>main {
 
     margin-top: 60px;
     row-gap: 8px;
-    --padding-inline: 0;
   }
 
   >.hero {
@@ -677,6 +683,17 @@ body>main {
 
 
     }
+
+  >.experience{
+
+  }
+
+  >.contact{
+    form{
+      background-color: var(--clr-neutral-dark);
+      border: 1px solid var(--clr-neutral-dark-light);
+    }
+  }
 }
 
 body>footer {

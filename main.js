@@ -6,15 +6,25 @@ const { format } = new Intl.NumberFormat('en-US', { style: 'currency', currency:
 
 
 const header = $('header');
+
 const projects = $('.projects');
+
 const encripted = $$('.encripted')
+
 const contactBtn = $("#contact_header_btn")
 const contact_span = _$(contactBtn, "span")
+
 const optional_links = $(".optional-links")
 const checkbox_menuToggle = _$(header, 'input[type="checkbox"]')
 
+const hiddenConfirm = $('iframe#hiddenConfirm')
+const contactForm = $('#contact form')
+
+
 
 const letters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM-_.".split('')
+
+let submitted = false
 
 let actualScroll = 0
 
@@ -37,28 +47,13 @@ window.addEventListener('scroll', () => {
 
 })
 
-
-
-
-// Project-image hover behaviour
-
-_$$(projects, '.project').forEach((project)=>{
-  project.addEventListener('mousemove', ({clientX, clientY}) => {
-  let {height, width} = project.getBoundingClientRect()
-  let x = clientX / width - .5  
-  let y = clientY / height - .5
-  project.setAttribute('style', `--_mouse-x : ${x}; --_mouse-y : ${y}`)
-})
-})
-
 // magnetic contact button
-document.addEventListener("mousemove", ({clientX, clientY}) => {
+document.addEventListener("mousemove", ({ clientX, clientY, target }) => {
   const { top, left, width, height } = contactBtn.getBoundingClientRect()
-
 
   const magneticField = 15
 
-  const calcX = Math.abs(left + width / 2 - clientX) < width / 2 + magneticField 
+  const calcX = Math.abs(left + width / 2 - clientX) < width / 2 + magneticField
   const calcY = Math.abs(top + height / 2 - clientY) < height / 2 + magneticField
 
   if (
@@ -66,45 +61,61 @@ document.addEventListener("mousemove", ({clientX, clientY}) => {
   ) {
 
     let newPosition = {
-      x :  Math.min(Math.abs(left + width / 2 - clientX), magneticField) *  Math.sign(left + width / 2 - clientX) * -1,
-      y : Math.min(Math.abs(top + height / 2 - clientY), magneticField) *  Math.sign(top + height / 2 - clientY) * -1
+      x: Math.min(Math.abs(left + width / 2 - clientX), magneticField) * Math.sign(left + width / 2 - clientX) * -1,
+      y: Math.min(Math.abs(top + height / 2 - clientY), magneticField) * Math.sign(top + height / 2 - clientY) * -1
     }
 
 
     contactBtn.setAttribute("style", `--_magnetic-x:${newPosition.x}; --_magnetic-y: ${newPosition.y}`)
 
     contactBtn.animate([
-      {translate: `${newPosition.x}px ${newPosition.y}px`}
+      { translate: `${newPosition.x}px ${newPosition.y}px` }
     ], {
-      duration : 300,
+      duration: 300,
       fill: "forwards"
     })
     contact_span.animate([
-      {translate: `${-newPosition.x/1.5}px ${-newPosition.y/1.5}px`}
+      { translate: `${-newPosition.x / 1.5}px ${-newPosition.y / 1.5}px` }
     ], {
-      duration : 300,
+      duration: 300,
       fill: "forwards"
     })
-  }else{
-    
-    
+  } else {
+
+
     contactBtn.animate([
-      {translate: `0 0`}
+      { translate: `0 0` }
     ], {
-      duration : 600,
-      easing : "ease-in",
+      duration: 600,
+      easing: "ease-in",
       fill: "forwards"
     })
     contact_span.animate([
-      {translate: `0 0`}
+      { translate: `0 0` }
     ], {
-      duration : 600,
-      easing : "ease-in",
+      duration: 600,
+      easing: "ease-in",
       fill: "forwards"
-      
+
     })
 
   }
+
+  {
+
+    // Project-image hover behaviour
+
+
+    let project = target.closest(".project")
+
+    if (!project) return
+
+    let { height, width } = project.getBoundingClientRect()
+    let x = clientX / width - .5
+    let y = clientY / height - .5
+    project.setAttribute('style', `--_mouse-x : ${x}; --_mouse-y : ${y}`)
+  }
+
 
 })
 
@@ -115,27 +126,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // hackerType effect
 
-let observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      hackerType(entry.target, entry.target.textContent)
-      observer.unobserve(entry.target)
-    }
+  let observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        hackerType(entry.target, entry.target.textContent)
+        observer.unobserve(entry.target)
+      }
+    })
+  }, {
+    threshold: 0
   })
-}, {
-  threshold: 0
-})
 
-encripted.forEach((el)=>observer.observe(el))
+  encripted.forEach((el) => observer.observe(el))
 })
 
 
 // ux on mobile improve on navigation on head link
-optional_links.addEventListener("click", ({target}) => {
-  if(target.closest("a")){
+optional_links.addEventListener("click", ({ target }) => {
+  if (target.closest("a")) {
     checkbox_menuToggle.checked = false
   }
 })
+
+// form submit
+hiddenConfirm.addEventListener("load", (e) => {
+  console.log("Holis")
+})
+
+
 
 function hackerType(element = HTMLElement, originalText = "") {
   const iterations = 15; // Número de iteraciones por letra
@@ -148,15 +166,15 @@ function hackerType(element = HTMLElement, originalText = "") {
   }
 }
 
-function randomizedText(length = 0){
+function randomizedText(length = 0) {
 
   let newText = ''
 
   for (let i = 0; i < length; i++) {
     newText += letters[Math.floor(Math.random() * letters.length)]
-    
+
   }
-  
+
 
   return newText
 
