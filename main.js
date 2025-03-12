@@ -19,6 +19,8 @@ const checkbox_menuToggle = _$(header, 'input[type="checkbox"]')
 
 const hiddenConfirm = $('iframe#hiddenConfirm')
 const contactForm = $('#contact form')
+const submitLabel = _$(contactForm, "label.submit")
+const submitFeedback = _$(submitLabel, 'span#feedback')
 
 
 
@@ -149,8 +151,26 @@ optional_links.addEventListener("click", ({ target }) => {
 })
 
 // form submit
+
+contactForm.addEventListener("submit", ()=>{
+  submitted = true
+  submitLabel.classList.add("loading")
+  submitLabel.classList.remove("done")
+})
+
 hiddenConfirm.addEventListener("load", (e) => {
-  console.log("Holis")
+  if (submitted) {
+    submitLabel.classList.add("done")
+    submitLabel.classList.remove("loading")
+    submitFeedback.textContent = "Message sent!"
+    
+    setTimeout(()=>{
+      submitted = false
+      submitFeedback.textContent = "Send message!"
+      submitLabel.classList.remove("done")
+    }, 3000)
+
+  }
 })
 
 
