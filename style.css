@@ -577,7 +577,7 @@ body>main {
     }
   }
 
-  >.about-me {
+  >.intro {
 
     scroll-margin-block-start: 90px;
 
@@ -689,7 +689,9 @@ body>main {
 
   }
 
-  >.experience {}
+  >.about-me{
+    
+  }
 
   >.contact {
     display: grid;
@@ -735,7 +737,7 @@ body>main {
         cursor: pointer;
         background-color: var(--clr-primary);
 
-        transition: .3s ease-out;
+        transition: .5s ease-out;
 
         display: flex;
         justify-content: center;
@@ -746,7 +748,7 @@ body>main {
 
         &:is(:hover,:focus-visible){
           background-color: var(--clr-primary-dark);
-          gap: 20px;
+          transition: .1s ease-out;
         }
 
         svg:is(.checkmark, .spinner){
