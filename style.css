@@ -859,6 +859,11 @@ body>footer {
   background-color: var(--clr-neutral-dark);
   padding-block: 16px;
   border-top: 1px solid var(--clr-neutral-dark-light);
+
+  >p{
+    color: var(--clr-accent);
+    font-size: var(--fs-min);
+  }
 }
 
 .cta {
