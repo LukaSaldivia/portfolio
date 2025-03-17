@@ -228,7 +228,7 @@ html {
 
 body {
 
-  --header-height: 61px;
+  --header-height: 80px;
 
   display: grid;
   grid-template-rows: [header-start main-start] var(--header-height) [header-end] 1fr [main-end footer-start] auto [footer-end];
@@ -255,12 +255,15 @@ body>header {
   grid-row: header;
   z-index: 1;
   position: sticky;
+  box-sizing: content-box;
 
   top: var(--_top-header);
 
   grid-template-rows: [light-start] 5px [light-end navigation-start] auto [navigation-end];
   align-items: center;
   row-gap: 12px;
+
+  transition: backdrop-filter .2s ease-out;
 
   >label {
     visibility: hidden;
@@ -465,6 +468,10 @@ body>header {
 
   }
 
+  &.clr{
+    filter: drop-shadow(0 0 10px var(--clr-neutral-dark));
+  }
+
 }
 
 body>main {
@@ -577,7 +584,7 @@ body>main {
     }
   }
 
-  >.intro {
+  >.about-me {
 
     scroll-margin-block-start: 90px;
 
@@ -687,15 +694,12 @@ body>main {
     }
 
 
-  }
-
-  >.about-me{
-    
-  }
+  } 
 
   >.contact {
     display: grid;
     row-gap: 32px;
+
     form {
       background-color: var(--clr-neutral-dark);
       border: 1px solid var(--clr-neutral-dark-light);
@@ -710,30 +714,31 @@ body>main {
         display: grid;
         row-gap: 8px;
 
-        input,textarea{
+        input,
+        textarea {
           background-color: var(--clr-neutral-dark);
           border: none;
           border-bottom: 1px solid var(--clr-neutral-dark-light);
           resize: none;
           padding: 8px;
 
-          &:is(textarea){
+          &:is(textarea) {
             border: 1px solid var(--clr-neutral-dark-light);
           }
 
-          &:focus{
+          &:focus {
             outline: none;
             border-color: var(--clr-accent);
           }
         }
       }
 
-      > label{
+      >label {
         transition: opacity .3s ease-out;
         border: none;
       }
 
-      > label.submit{
+      >label.submit {
         cursor: pointer;
         background-color: var(--clr-primary);
 
@@ -746,94 +751,99 @@ body>main {
         padding: 12px;
         border-radius: 12px;
 
-        &:is(:hover,:focus-visible){
+        &:is(:hover, :focus-visible) {
           background-color: var(--clr-primary-dark);
           transition: .1s ease-out;
         }
 
-        svg:is(.checkmark, .spinner){
+        svg:is(.checkmark, .spinner) {
           display: none;
         }
 
-        input{
+        input {
           display: none;
         }
 
-        &.loading{
-          svg.paper-plane{
+        &.loading {
+          svg.paper-plane {
             display: none;
           }
 
-          svg.spinner{
+          svg.spinner {
             display: block;
           }
         }
 
-        &.done{
+        &.done {
           background-color: var(--clr-neutral-dark-light);
           color: var(--clr-accent);
 
 
-          svg:is(.spinner, .paper-plane){
+
+          svg:is(.spinner, .paper-plane) {
             display: none;
           }
 
-          svg.checkmark{
+          svg.checkmark {
             display: block;
           }
 
         }
-      
+
+        &:is(.done, .loading) {
+          pointer-events: none;
+        }
+
       }
 
-      >.categories-row{
+      >.categories-row {
 
-      display: grid;
-      gap: 8px;
-
-      >.categories {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
         gap: 8px;
 
-        >label {
-          background-color: var(--clr-primary-dark);
-          padding: 10px 12px;
-          flex-grow: 1;
-          text-align: center;
+        >.categories {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
 
-          border-radius: 10px;
-          border: 1px solid var(--clr-primary-light);
-          transition: .3s;
+          >label {
+            background-color: var(--clr-primary-dark);
+            padding: 10px 12px;
+            flex-grow: 1;
+            text-align: center;
 
-          cursor: pointer;
-
-          input {
-            display: none;
-          }
-
-          
-  
-          &:has(input:checked) {
-            transition: .1s;
-            background-color: var(--clr-neutral-light);
-            color: var(--clr-neutral-dark);
-            border-color: var(--clr-neutral-light-dark);
-          }
-
-          &:hover{
+            border-radius: 10px;
+            border: 1px solid var(--clr-primary-light);
             transition: .3s;
-            background-color: var(--clr-primary);
-          }
-        }
 
-        &:has(label:hover) label:not(:hover,:has(input:checked)){
-          scale: .9;
+            cursor: pointer;
+
+            input {
+              display: none;
+            }
+
+
+
+            &:has(input:checked) {
+              transition: .1s;
+              background-color: var(--clr-neutral-light);
+              color: var(--clr-neutral-dark);
+              border-color: var(--clr-neutral-light-dark);
+            }
+
+            &:hover {
+              transition: .3s;
+              background-color: var(--clr-primary);
+            }
+          }
+
+          &:has(label:hover) label:not(:hover, :has(input:checked)) {
+            scale: .9;
+          }
         }
       }
-    }
 
-      &:not(:has(.categories input:checked)) > :is(label, input){
+      &:not(:has(.categories input:checked))> :is(label, input) {
         pointer-events: none;
         opacity: .2;
       }
