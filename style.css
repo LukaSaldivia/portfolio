@@ -594,7 +594,7 @@ body>main {
     justify-items: center;
 
     .container {
-      width: min(100%, 580px);
+      width: min(100%, 580px); 
       background-image: radial-gradient(hsl(from var(--clr-accent) h s l /.1), transparent 60%);
 
       display: grid;
